@@ -282,7 +282,7 @@ export const CONTACT = {
 
 export const FOOTER = {
   tagline:   'Helping brands grow through strategy, creativity, and data.',
-  copyright: `© ${new Date().getFullYear()} Daniel Mensah. All rights reserved.`,
+  copyright: `© ${new Date().getFullYear()} Ebenezer Amankwaah. All rights reserved.`,
   built:     'Built with passion in Dubai.',
 } as const;
 
