@@ -1,1 +1,211 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary:    #0D0F1A;
+    --bg-secondary:  #121522;
+    --surface:       #171A28;
+    --surface-el:    #1D2030;
+    --text-primary:  #F5F4F1;
+    --text-secondary:#A7A7B2;
+    --text-muted:    #737684;
+    --accent:        #8B7CF6;
+    --accent-light:  #A896FF;
+    --border:        rgba(255,255,255,0.08);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg-primary text-text-primary font-sans antialiased;
+    background-color: var(--bg-primary);
+  }
+
+  * {
+    @apply border-border-subtle;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: #fff;
+  }
+}
+
+@layer components {
+  /* Section label style */
+  .label {
+    @apply text-accent text-xs font-medium uppercase tracking-widest;
+  }
+
+  /* Subtle divider */
+  .divider {
+    @apply border-t border-white/[0.08] w-full;
+  }
+
+  /* Card base */
+  .card {
+    @apply bg-surface border border-white/[0.08] rounded-xl overflow-hidden transition-all duration-300;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-accent hover:bg-accent-light text-white font-medium px-6 py-3 rounded-full transition-all duration-300 text-sm;
+  }
+
+  /* Ghost button */
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 border border-white/20 hover:border-accent text-text-primary hover:text-accent font-medium px-6 py-3 rounded-full transition-all duration-300 text-sm;
+  }
+
+  .service-icon {
+    @apply inline-flex h-11 w-11 items-center justify-center rounded-xl border border-accent/25 bg-accent/10 text-accent-light;
+  }
+
+  .service-icon i {
+    @apply text-2xl leading-none;
+  }
+
+  .footer-social-link {
+    @apply inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-text-muted transition-all duration-200 hover:border-accent hover:text-accent;
+  }
+
+  .footer-social-link i {
+    @apply text-lg leading-none;
+  }
+
+  .footer-contact-row {
+    @apply flex items-center gap-3 text-text-muted text-sm transition-colors duration-200;
+  }
+
+  .footer-contact-row i {
+    @apply text-accent text-lg leading-none;
+  }
+
+  .contact-label {
+    @apply block text-text-secondary text-sm font-medium mb-2;
+  }
+
+  .contact-field {
+    @apply w-full bg-transparent border text-text-primary text-sm rounded-xl px-4 py-3 outline-none transition-all duration-200 focus:border-accent/50 placeholder-text-muted;
+  }
+
+  .contact-card {
+    @apply flex items-center gap-4 p-4 border border-white/[0.08] rounded-xl transition-all duration-200 hover:border-accent/30;
+  }
+
+  .smooth-card {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .image-hover {
+    @apply transition-transform duration-700 ease-out;
+  }
+
+  .group:hover .image-hover,
+  .image-hover:hover {
+    transform: scale(1.045);
+  }
+
+  /* Nav link */
+  .nav-link {
+    @apply text-text-secondary hover:text-text-primary text-sm font-medium transition-colors duration-200 relative;
+  }
+
+  .nav-link.active {
+    @apply text-text-primary;
+  }
+
+  .nav-link.active::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 right-0 h-px bg-accent;
+  }
+
+  /* Section spacing */
+  .section {
+    @apply py-20 md:py-28 px-6 max-w-5xl mx-auto;
+  }
+
+  /* Fade up animation */
+  .fade-up {
+    @apply opacity-0;
+    animation: fadeInUp 0.72s cubic-bezier(0.2, 0.65, 0.25, 1) forwards;
+  }
+
+  .fade-up-delay-1 {
+    animation-delay: 90ms;
+  }
+
+  .fade-up-delay-2 {
+    animation-delay: 170ms;
+  }
+
+  .fade-up-delay-3 {
+    animation-delay: 250ms;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .accent-gradient {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .smooth-card:hover {
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .fade-up {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .smooth-card,
+  .image-hover {
+    transition: none;
+  }
+
+  .smooth-card:hover,
+  .group:hover .image-hover,
+  .image-hover:hover {
+    transform: none;
+  }
+}

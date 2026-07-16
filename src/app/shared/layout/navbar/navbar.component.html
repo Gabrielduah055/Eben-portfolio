@@ -1,0 +1,70 @@
+<nav
+  [class]="isScrolled
+    ? 'fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-bg-primary/95 backdrop-blur-md border-b border-white/[0.06] shadow-lg shadow-black/20'
+    : 'fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent'">
+  <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+
+    <!-- Logo / Brand -->
+    <a routerLink="/" class="group flex flex-col leading-tight">
+      <span class="text-text-primary font-medium text-sm tracking-wide group-hover:text-accent transition-colors duration-200">{{ site.name }}</span>
+      <span class="text-text-muted text-xs font-normal">{{ site.tagline }}</span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <ul class="hidden md:flex items-center gap-7">
+      <li *ngFor="let link of links">
+        <a
+          [routerLink]="link.path"
+          class="nav-link text-sm font-normal py-1"
+          [class.text-text-primary]="isActive(link.path)"
+          [class.text-text-secondary]="!isActive(link.path)"
+          [class.after:bg-accent]="isActive(link.path)"
+          style="position:relative;">
+          {{ link.label }}
+          <span
+            *ngIf="isActive(link.path)"
+            class="absolute -bottom-0.5 left-0 right-0 h-px bg-accent rounded-full transition-all duration-200">
+          </span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Desktop CTA -->
+    <a routerLink="/contact" class="hidden md:inline-flex btn-primary text-xs px-4 py-2">
+      Let's Talk
+    </a>
+
+    <!-- Mobile Hamburger -->
+    <button
+      (click)="toggleMobile()"
+      class="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-1.5 focus:outline-none group"
+      [attr.aria-expanded]="mobileOpen"
+      aria-label="Toggle navigation">
+      <span class="block w-6 h-px bg-text-secondary group-hover:bg-text-primary transition-all duration-300"
+        [class.-rotate-45]="mobileOpen"
+        [class.translate-y-2]="mobileOpen"></span>
+      <span class="block w-6 h-px bg-text-secondary group-hover:bg-text-primary transition-all duration-300"
+        [class.opacity-0]="mobileOpen"
+        [class.w-4]="!mobileOpen"></span>
+      <span class="block w-6 h-px bg-text-secondary group-hover:bg-text-primary transition-all duration-300"
+        [class.rotate-45]="mobileOpen"
+        [class.-translate-y-2]="mobileOpen"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div *ngIf="mobileOpen" class="md:hidden bg-bg-secondary border-t border-white/[0.06] animate-fade-in-up">
+    <div class="max-w-5xl mx-auto px-6 py-6 flex flex-col gap-4">
+      <a
+        *ngFor="let link of links"
+        [routerLink]="link.path"
+        class="text-text-secondary hover:text-text-primary font-normal text-base py-2 border-b border-white/[0.06] transition-colors duration-200"
+        [class.text-accent]="isActive(link.path)">
+        {{ link.label }}
+      </a>
+      <a routerLink="/contact" class="btn-primary mt-2 text-center justify-center">
+        Let's Talk
+      </a>
+    </div>
+  </div>
+</nav>

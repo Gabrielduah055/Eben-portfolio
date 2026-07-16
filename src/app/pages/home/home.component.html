@@ -1,0 +1,156 @@
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="min-h-[88vh] flex items-center pt-20  px-6 relative overflow-hidden">
+  <!-- Background decoration -->
+  <div class="absolute top-1/4 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-1/4 left-0 w-64 h-64 bg-accent/3 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-14 items-center fade-up">
+    <!-- Left: Text -->
+    <div class="order-2 lg:order-1">
+      <div class="flex items-center gap-2 mb-5">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+        <span class="label">{{ content.hero.label }}</span>
+      </div>
+      <h1 class="text-4xl sm:text-5xl lg:text-[3.45rem] font-normal text-text-primary leading-[1.12] mb-6 tracking-normal">
+        Marketing that<br>
+        <span class="text-gradient">moves people</span><br>
+        and drives results.
+      </h1>
+      <p class="text-text-secondary text-base leading-7 mb-8 max-w-lg">{{ content.hero.subtext }}</p>
+      <div class="flex flex-wrap gap-4">
+        <a routerLink="/contact" class="rounded border border-accent py-2 px-4 text-white text-sm font-medium flex items-center justify-center gap-2" >
+          {{ content.hero.primaryCta }}
+          <i class="uil uil-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: Portrait -->
+    <div class="order-1 lg:order-2 flex justify-center lg:justify-end relative">
+      <div class="relative">
+        <div class="w-64 h-64 sm:w-80 sm:h-80 lg:w-[22rem] lg:h-[22rem] rounded-full overflow-hidden border border-white/10 relative shadow-2xl shadow-black/25">
+          <img
+            src="/assets/photo5.jpg"
+            alt="Daniel Mensah — Digital Marketer Dubai"
+            class="w-full h-full object-cover object-center">
+        </div>
+        <p class="absolute -bottom-5 left-2 rotate-[-8deg] text-accent-light text-sm sm:text-base italic font-light tracking-wide">Based in Dubai</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ ABOUT PREVIEW ══════════════════ -->
+<section class="py-10 md:py-10 px-6 ">
+  <div class="max-w-5xl mx-auto fade-up fade-up-delay-1">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <!-- Left -->
+      <div>
+        <app-section-header
+          [label]="content.about.label"
+          [heading]="content.about.heading">
+        </app-section-header>
+        <p class="text-text-secondary leading-relaxed mb-8">{{ content.about.body }}</p>
+        <a routerLink="/about" class=" w-fit rounded border border-accent py-2 px-4 text-white text-sm font-medium flex items-center justify-center gap-2" >
+          {{ content.about.cta }}
+          <i class="uil uil-arrow-right"></i>
+        </a>
+      </div>
+      <!-- Right: Two columns -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="rounded-xl p-6">
+          <span class="relative text-accent/40 text-2xl font-bold block mb-3 flex items-center gap-2">
+            {{ content.about.col1.number }}
+            <div class="w-12 h-1 bg-accent mt-3 "></div>
+          </span>
+          <h3 class="text-text-primary font-semibold mb-2">{{ content.about.col1.title }}</h3>
+          <p class="text-text-secondary text-sm leading-relaxed">{{ content.about.col1.text }}</p>
+        </div>
+        <div class="rounded-xl p-6">
+          <span class="relative text-accent/40 text-2xl font-bold block mb-3 flex items-center gap-2">
+            {{ content.about.col2.number }}
+            <div class="w-12 h-1 bg-accent mt-3 "></div>
+          </span>
+          <h3 class="text-text-primary font-semibold mb-2">{{ content.about.col2.title }}</h3>
+          <p class="text-text-secondary text-sm leading-relaxed">{{ content.about.col2.text }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SELECTED WORK ══════════════════ -->
+<section class="py-20 md:py-28 px-6 bg-bg-secondary border-t border-white/[0.06]">
+  <div class="max-w-5xl mx-auto fade-up fade-up-delay-1">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+      <app-section-header [label]="content.work.label" [heading]="content.work.heading"></app-section-header>
+      <a routerLink="/work" class="btn-ghost flex-shrink-0 self-start sm:self-auto">{{ content.work.cta }}</a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <app-project-card *ngFor="let project of featuredWork" [project]="project"></app-project-card>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SERVICES ══════════════════ -->
+<section class="py-20 md:py-28 px-6 border-t border-white/[0.06]">
+  <div class="max-w-5xl mx-auto fade-up fade-up-delay-2">
+    <app-section-header [label]="content.services.label" [heading]="content.services.heading"></app-section-header>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div *ngFor="let service of services"
+        class="group smooth-card rounded-xl p-6 hover:border-accent/30 transition-all duration-300 cursor-default">
+        <span class="service-icon mb-4 transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
+          <i [class]="service.icon"></i>
+        </span>
+        <h3 class="text-text-primary font-semibold text-base mb-2">{{ service.title }}</h3>
+        <p class="text-text-muted text-sm leading-relaxed line-clamp-3">{{ service.description }}</p>
+      </div>
+    </div>
+    <div class="mt-8 text-center">
+      <a routerLink="/services" class="btn-ghost">View All Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ LIFESTYLE ══════════════════ -->
+<section class="py-20 md:py-28 px-6 bg-bg-secondary border-t border-white/[0.06]">
+  <div class="max-w-5xl mx-auto fade-up fade-up-delay-2">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-12">
+      <app-section-header [label]="content.lifestyle.label" [heading]="content.lifestyle.heading"></app-section-header>
+      <div>
+        <p class="text-text-secondary text-lg leading-relaxed mb-6">{{ content.lifestyle.body }}</p>
+        <a routerLink="/lifestyle" class="btn-ghost">See My World</a>
+      </div>
+    </div>
+    <!-- Gallery grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+      <app-lifestyle-card
+        *ngFor="let item of lifestyleItems"
+        [image]="item.image"
+        [label]="item.label">
+      </app-lifestyle-card>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ TESTIMONIALS ══════════════════ -->
+<section class="py-20 md:py-28 px-6 border-t border-white/[0.06]">
+  <div class="max-w-5xl mx-auto fade-up fade-up-delay-3">
+    <app-section-header
+      [label]="content.testimonials.label"
+      [heading]="content.testimonials.heading"
+      align="center">
+    </app-section-header>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <app-testimonial-card *ngFor="let t of testimonials" [testimonial]="t"></app-testimonial-card>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CTA ══════════════════ -->
+<app-cta-section
+  [heading]="content.cta.heading"
+  [body]="content.cta.body"
+  [button]="content.cta.button"
+  link="/contact">
+</app-cta-section>

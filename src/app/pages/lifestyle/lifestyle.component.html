@@ -1,0 +1,53 @@
+<div class="pt-16">
+
+  <!-- Hero -->
+  <section class="py-20 md:py-24 px-6 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto fade-up">
+      <div class="max-w-3xl">
+        <span class="label block mb-5">{{ content.label }}</span>
+        <h1 class="text-4xl sm:text-5xl lg:text-[3.25rem] font-normal text-text-primary leading-[1.12] mb-6 tracking-normal">
+          {{ content.heading }}
+        </h1>
+        <p class="text-text-secondary text-base leading-7 max-w-2xl mb-4">{{ content.subtext }}</p>
+        <p class="text-text-secondary text-base leading-7 max-w-2xl">{{ content.blurb }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lifestyle Sections -->
+  <section class="py-10 md:py-14 px-6">
+    <div class="max-w-5xl mx-auto divide-y divide-white/[0.06] fade-up fade-up-delay-1">
+      <article *ngFor="let section of sections; let i = index" class="py-12 first:pt-0 last:pb-0">
+        <div class="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-8 lg:gap-12 items-center">
+
+          <div class="grid grid-cols-3 gap-3" [class.lg:order-2]="i % 2 !== 0">
+            <div *ngFor="let img of section.images; let j = index"
+              class="group overflow-hidden rounded-xl bg-surface"
+              [class]="j === 0 ? 'col-span-2 aspect-video' : 'col-span-1 aspect-square'">
+              <img [src]="img" [alt]="section.label"
+                class="w-full h-full object-cover opacity-90 image-hover">
+            </div>
+          </div>
+
+          <div class="max-w-md" [class.lg:order-1]="i % 2 !== 0">
+            <span class="label block mb-4">{{ section.label }}</span>
+            <p class="text-text-secondary text-base leading-7">{{ section.desc }}</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Follow + Social -->
+  <section class="py-16 px-6">
+    <div class="max-w-5xl mx-auto border-y border-white/[0.06] py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 fade-up fade-up-delay-2">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-normal text-text-primary mb-2">{{ content.social.heading }}</h2>
+        <p class="text-text-secondary text-sm leading-7 max-w-xl">{{ content.social.body }}</p>
+      </div>
+      <app-social-links size="md"></app-social-links>
+    </div>
+  </section>
+
+</div>

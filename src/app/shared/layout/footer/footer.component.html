@@ -1,0 +1,81 @@
+<footer class="border-t border-white/[0.06] bg-bg-secondary/70">
+  <div class="max-w-5xl mx-auto px-6 py-12 md:py-14">
+    <div class="grid grid-cols-1 md:grid-cols-[1.25fr_0.8fr_1fr] gap-10 md:gap-12">
+
+      <!-- Brand -->
+      <div>
+        <a routerLink="/" class="group inline-flex flex-col leading-tight">
+          <span class="text-text-primary font-medium text-sm tracking-wide group-hover:text-accent transition-colors duration-200">{{ site.name }}</span>
+          <span class="text-text-muted text-xs mt-1">{{ site.tagline }}</span>
+        </a>
+        <p class="text-text-muted text-sm leading-7 mt-5 max-w-sm">{{ footer.tagline }}</p>
+
+        <div class="flex items-center gap-3 mt-6">
+          <a [href]="site.social.instagram" target="_blank" rel="noopener" aria-label="Instagram" class="footer-social-link">
+            <i class="uil uil-instagram"></i>
+          </a>
+          <a [href]="site.social.linkedin" target="_blank" rel="noopener" aria-label="LinkedIn" class="footer-social-link">
+            <i class="uil uil-linkedin"></i>
+          </a>
+          <a [href]="site.social.tiktok" target="_blank" rel="noopener" aria-label="TikTok" class="footer-social-link">
+            <i class="uil uil-music-note"></i>
+          </a>
+          <a [href]="site.social.youtube" target="_blank" rel="noopener" aria-label="YouTube" class="footer-social-link">
+            <i class="uil uil-youtube"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav aria-label="Footer navigation">
+        <h3 class="label mb-5">Navigation</h3>
+        <ul class="space-y-3">
+          <li *ngFor="let link of links">
+            <a [routerLink]="link.path" class="text-text-muted hover:text-accent text-sm transition-colors duration-200">
+              {{ link.label }}
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="label mb-5">Get in Touch</h3>
+        <ul class="space-y-4">
+          <li class="footer-contact-row">
+            <i class="uil uil-map-marker"></i>
+            <span>{{ site.location }}</span>
+          </li>
+          <li>
+            <a [href]="'mailto:' + site.email" class="footer-contact-row hover:text-accent">
+              <i class="uil uil-envelope"></i>
+              <span>{{ site.email }}</span>
+            </a>
+          </li>
+          <li>
+            <a [href]="'tel:' + site.phone" class="footer-contact-row hover:text-accent">
+              <i class="uil uil-phone"></i>
+              <span>{{ site.phone }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 border-y border-white/[0.06] py-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div>
+        <p class="text-text-primary text-xl md:text-2xl font-normal">Ready to grow your brand?</p>
+        <p class="text-text-muted text-sm mt-1">Let's build something useful, sharp, and measurable.</p>
+      </div>
+      <a routerLink="/contact" class="w-fit rounded border border-accent py-2 px-4 text-white text-sm font-medium inline-flex items-center justify-center gap-2">
+        Start a Project
+        <i class="uil uil-arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-text-muted text-xs">{{ footer.copyright }}</p>
+      <p class="text-text-muted text-xs">{{ footer.built }}</p>
+    </div>
+  </div>
+</footer>

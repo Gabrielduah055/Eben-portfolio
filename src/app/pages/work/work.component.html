@@ -1,0 +1,40 @@
+<div class="pt-16">
+  <!-- Hero -->
+  <section class="py-20 md:py-24 px-6 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto fade-up">
+      <div class="max-w-3xl">
+        <span class="label block mb-5">{{ content.label }}</span>
+        <h1 class="text-4xl sm:text-5xl lg:text-[3.25rem] font-normal text-text-primary leading-[1.12] mb-6 tracking-normal">
+          {{ content.heading }}
+        </h1>
+        <p class="text-text-secondary text-base leading-7 max-w-2xl">{{ content.subtext }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filters + Grid -->
+  <section class="py-12 md:py-16 px-6">
+    <div class="max-w-5xl mx-auto fade-up fade-up-delay-1">
+      <div class="flex flex-wrap gap-2 mb-10">
+        <button
+          *ngFor="let filter of filters"
+          type="button"
+          (click)="setFilter(filter)"
+          [class]="activeFilter() === filter
+            ? 'border border-accent bg-accent text-white font-medium text-sm px-4 py-2 rounded-full transition-all duration-200'
+            : 'border border-white/[0.08] text-text-secondary hover:text-text-primary hover:border-accent/30 font-normal text-sm px-4 py-2 rounded-full transition-all duration-200'">
+          {{ filter }}
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <app-project-card *ngFor="let project of filteredProjects()" [project]="project"></app-project-card>
+      </div>
+
+      <div *ngIf="filteredProjects().length === 0" class="text-center py-20">
+        <p class="text-text-muted text-base">No projects in this category yet.</p>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,121 @@
+<div class="pt-16" *ngIf="project">
+
+  <!-- Hero -->
+  <section class="py-20 md:py-24 px-6 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-10 lg:gap-14 items-center fade-up">
+      <div>
+        <span class="label block mb-5">{{ project.industry }} / {{ project.year }}</span>
+        <h1 class="text-4xl sm:text-5xl lg:text-[3.25rem] font-normal text-text-primary leading-[1.12] mb-6 tracking-normal">
+          {{ project.title }}
+        </h1>
+        <p class="text-text-secondary text-base leading-7 max-w-xl">{{ project.summary }}</p>
+      </div>
+
+      <div class="rounded-xl overflow-hidden border border-white/[0.08] bg-surface shadow-2xl shadow-black/20">
+        <img [src]="project.image" [alt]="project.title" class="w-full aspect-[16/11] object-cover image-hover">
+      </div>
+    </div>
+  </section>
+
+  <!-- Meta -->
+  <section class="bg-bg-secondary border-y border-white/[0.06] px-6 py-8">
+    <div class="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 fade-up fade-up-delay-1">
+      <div>
+        <p class="label mb-2">Client</p>
+        <p class="text-text-primary font-medium text-sm">{{ project.client }}</p>
+      </div>
+      <div>
+        <p class="label mb-2">Industry</p>
+        <p class="text-text-primary font-medium text-sm">{{ project.industry }}</p>
+      </div>
+      <div>
+        <p class="label mb-2">Year</p>
+        <p class="text-text-primary font-medium text-sm">{{ project.year }}</p>
+      </div>
+      <div>
+        <p class="label mb-2">Services</p>
+        <p class="text-text-primary font-medium text-sm leading-6">{{ project.services.join(' / ') }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Body -->
+  <section class="py-16 md:py-20 px-6">
+    <div class="max-w-5xl mx-auto space-y-14 fade-up fade-up-delay-1">
+
+      <article class="grid grid-cols-1 lg:grid-cols-[0.35fr_0.65fr] gap-6 lg:gap-12">
+        <h2 class="text-text-primary font-medium text-xl">{{ sections.overview }}</h2>
+        <p class="text-text-secondary text-base leading-7">{{ project.summary }}</p>
+      </article>
+
+      <div class="divider"></div>
+
+      <article class="grid grid-cols-1 lg:grid-cols-[0.35fr_0.65fr] gap-6 lg:gap-12">
+        <h2 class="text-text-primary font-medium text-xl">{{ sections.challenge }}</h2>
+        <p class="text-text-secondary text-base leading-7">{{ project.challenge }}</p>
+      </article>
+
+      <div class="divider"></div>
+
+      <article class="grid grid-cols-1 lg:grid-cols-[0.35fr_0.65fr] gap-6 lg:gap-12">
+        <h2 class="text-text-primary font-medium text-xl">{{ sections.strategy }}</h2>
+        <p class="text-text-secondary text-base leading-7">{{ project.strategy }}</p>
+      </article>
+
+      <div class="divider"></div>
+
+      <article class="grid grid-cols-1 lg:grid-cols-[0.35fr_0.65fr] gap-6 lg:gap-12">
+        <h2 class="text-text-primary font-medium text-xl">{{ sections.execution }}</h2>
+        <p class="text-text-secondary text-base leading-7">{{ project.execution }}</p>
+      </article>
+
+      <div class="divider"></div>
+
+      <article>
+        <div class="grid grid-cols-1 lg:grid-cols-[0.35fr_0.65fr] gap-6 lg:gap-12 mb-8">
+          <h2 class="text-text-primary font-medium text-xl">{{ sections.results }}</h2>
+          <p class="text-text-secondary text-base leading-7">The campaign was measured against practical business outcomes, not vanity metrics.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div *ngFor="let result of project.results"
+            class="smooth-card bg-surface border border-white/[0.08] rounded-xl p-5 text-center hover:border-accent/30">
+            <p class="text-2xl md:text-3xl font-normal text-accent mb-2">{{ result.value }}</p>
+            <p class="text-text-muted text-xs leading-snug">{{ result.metric }}</p>
+          </div>
+        </div>
+      </article>
+
+      <div class="divider"></div>
+
+      <article class="grid grid-cols-1 lg:grid-cols-[0.35fr_0.65fr] gap-6 lg:gap-12">
+        <h2 class="text-text-primary font-medium text-xl">{{ sections.lessons }}</h2>
+        <div class="border border-accent/20 rounded-xl p-6 bg-surface/70">
+          <p class="text-text-secondary text-base leading-7 italic">"{{ project.lessons }}"</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Next Project -->
+  <section class="border-t border-white/[0.06] bg-bg-secondary px-6" *ngIf="nextProject">
+    <a [routerLink]="['/work', nextProject.slug]"
+      class="group max-w-5xl mx-auto py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <p class="label mb-2">{{ sections.next }}</p>
+        <h3 class="text-text-primary font-medium text-xl group-hover:text-accent transition-colors duration-200">{{ nextProject.title }}</h3>
+        <p class="text-text-muted text-sm mt-1">{{ nextProject.industry }}</p>
+      </div>
+      <span class="service-icon group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">
+        <i class="uil uil-arrow-right"></i>
+      </span>
+    </a>
+  </section>
+
+</div>
+
+<div *ngIf="!project" class="pt-32 text-center px-6">
+  <p class="text-text-muted text-lg mb-6">Project not found.</p>
+  <a routerLink="/work" class="btn-ghost">Back to Work</a>
+</div>
