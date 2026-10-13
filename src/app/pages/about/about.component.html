@@ -1,149 +1,81 @@
-<div class="pt-16">
+<div class="pt-[72px]">
+  <section class="page-section">
+    <div class="shell grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_0.9fr] lg:gap-20">
+      <div class="fade-up">
+        <p class="label mb-5">{{ content.hero.label }}</p>
+        <h1 class="max-w-3xl font-display text-5xl font-semibold leading-[1.02] tracking-[-0.045em] text-text-primary sm:text-6xl">
+          {{ content.hero.heading }}
+        </h1>
+        <p class="mt-6 max-w-xl text-base leading-8 text-text-secondary md:text-lg">{{ content.hero.subtext }}</p>
+      </div>
 
-  <!-- Hero -->
-  <section class="py-20 md:py-24 px-6 relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="max-w-5xl mx-auto fade-up">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-14 items-center">
-        <div>
-          <span class="label block mb-5">{{ content.hero.label }}</span>
-          <h1 class="text-4xl sm:text-5xl lg:text-[3.25rem] font-normal text-text-primary leading-[1.12] mb-6 tracking-normal">
-            {{ content.hero.heading }}
-          </h1>
-          <p class="text-text-secondary text-base leading-7 max-w-lg">{{ content.hero.subtext }}</p>
-        </div>
-
-        <div class="flex justify-center lg:justify-end">
-          <div class="relative">
-            <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border border-white/10 shadow-2xl shadow-black/25">
-              <img src="/assets/photo2.jpg"
-                alt="Daniel Mensah" class="w-full h-full object-cover">
-            </div>
-            <p class="absolute -bottom-5 left-2 rotate-[-8deg] text-accent-light text-sm sm:text-base italic font-light tracking-wide">Based in Dubai</p>
-          </div>
+      <div class="fade-up fade-up-delay-1 lg:justify-self-end">
+        <div class="max-w-[27rem] overflow-hidden rounded-2xl border border-border-subtle bg-surface">
+          <img src="/assets/ebenezer-relaxed.jpg" alt="Ebenezer Amankwaa smiling" class="aspect-[4/5] w-full object-cover object-center">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Story -->
-  <section class="py-14 md:py-16 px-6">
-    <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-16 fade-up fade-up-delay-1">
-      <div>
-        <span class="label block mb-4">My Story</span>
-        <h2 class="text-2xl md:text-3xl font-medium text-text-primary leading-tight">
-          Strategy with a human pulse.
-        </h2>
-      </div>
-      <div>
-        <p *ngFor="let para of content.bio" class="text-text-secondary leading-7 mb-5 last:mb-0">
-          {{ para }}
-        </p>
+  <section class="page-section border-y border-border-subtle bg-bg-secondary/70">
+    <div class="shell grid grid-cols-1 gap-12 lg:grid-cols-[0.55fr_1.45fr] lg:gap-20">
+      <h2 class="font-display text-3xl font-semibold tracking-[-0.03em] text-text-primary sm:text-4xl">The story so far.</h2>
+      <div class="max-w-3xl">
+        <p *ngFor="let paragraph of content.bio" class="mb-5 text-base leading-8 text-text-secondary last:mb-0">{{ paragraph }}</p>
       </div>
     </div>
   </section>
 
-  <!-- Philosophy -->
-  <section class="py-16 md:py-20 px-6">
-    <div class="max-w-5xl mx-auto fade-up fade-up-delay-1">
-      <div class="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-16 items-start mb-10">
-        <app-section-header [label]="content.philosophy.label" [heading]="content.philosophy.heading"></app-section-header>
-        <p class="text-text-secondary leading-7">
-          The best marketing feels specific because it is built from real context: how people live, what they value, what they ignore, and what finally earns their trust.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <article *ngFor="let point of content.philosophy.points; let i = index"
-          class="group smooth-card overflow-hidden rounded-xl border border-white/[0.08] bg-surface/60 transition-all duration-300 hover:border-accent/25">
-          <div class="aspect-[16/9] overflow-hidden bg-bg-secondary">
-            <img [src]="philosophyImages[i]" [alt]="point.title"
-              class="w-full h-full object-cover opacity-80 image-hover">
-          </div>
-          <div class="p-6">
-            <div class="w-8 h-px bg-accent mb-5"></div>
-            <h3 class="text-text-primary font-medium text-base mb-3">{{ point.title }}</h3>
-            <p class="text-text-secondary text-sm leading-7">{{ point.text }}</p>
-          </div>
+  <section class="page-section">
+    <div class="shell">
+      <h2 class="max-w-2xl font-display text-3xl font-semibold tracking-[-0.03em] text-text-primary sm:text-4xl">How I approach the work.</h2>
+      <div class="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <article class="rounded-2xl bg-accent p-7 text-[#f8f9fd] lg:row-span-2 lg:flex lg:flex-col lg:justify-end lg:p-10">
+          <i class="uil uil-users-alt text-4xl" aria-hidden="true"></i>
+          <h3 class="mt-8 text-2xl font-bold">{{ content.principles[0].title }}</h3>
+          <p class="mt-3 max-w-md text-sm leading-7 text-[#e8edff]">{{ content.principles[0].text }}</p>
+        </article>
+        <article *ngFor="let principle of content.principles.slice(1)" class="panel p-7 lg:p-8">
+          <h3 class="text-lg font-bold text-text-primary">{{ principle.title }}</h3>
+          <p class="mt-3 text-sm leading-7 text-text-secondary">{{ principle.text }}</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Skills, Tools, Industries -->
-  <section class="py-16 md:py-20 px-6 bg-bg-secondary border-y border-white/[0.06]">
-    <div class="max-w-5xl mx-auto fade-up fade-up-delay-2">
-      <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12">
-        <div>
-          <app-section-header [label]="content.skills.label" [heading]="content.skills.heading"></app-section-header>
-          <div class="flex flex-wrap gap-2">
-            <span *ngFor="let skill of content.skills.items"
-              class="border border-white/[0.08] text-text-secondary text-sm px-4 py-2 rounded-full hover:border-accent/30 hover:text-text-primary transition-all duration-200">
-              {{ skill }}
-            </span>
-          </div>
+  <section class="page-section border-y border-border-subtle bg-bg-secondary/70">
+    <div class="shell grid grid-cols-1 gap-14 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20">
+      <div>
+        <h2 class="max-w-2xl font-display text-3xl font-semibold tracking-[-0.03em] text-text-primary sm:text-4xl">{{ content.skills.heading }}</h2>
+        <ul class="mt-9 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
+          <li *ngFor="let skill of content.skills.items" class="flex items-center gap-3 rounded-xl bg-surface/60 px-4 py-3 text-sm font-medium text-text-secondary">
+            <i class="uil uil-check-circle text-lg text-accent" aria-hidden="true"></i>
+            <span>{{ skill }}</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold text-text-primary">{{ content.tools.heading }}</h3>
+        <div class="mt-5 flex flex-wrap gap-3">
+          <span *ngFor="let tool of content.tools.items" class="rounded-full border border-border-subtle bg-surface px-4 py-2 text-sm font-semibold text-text-secondary">{{ tool }}</span>
         </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8">
-          <div>
-            <span class="label block mb-4">{{ content.tools.label }}</span>
-            <div class="flex flex-wrap gap-2">
-              <span *ngFor="let tool of content.tools.items"
-                class="bg-bg-primary/60 border border-white/[0.06] text-text-muted text-xs px-3 py-1.5 rounded-full">
-                {{ tool }}
-              </span>
-            </div>
-          </div>
-
-          <div>
-            <span class="label block mb-4">{{ content.industries.label }}</span>
-            <div class="flex flex-wrap gap-2">
-              <span *ngFor="let ind of content.industries.items"
-                class="bg-bg-primary/60 border border-white/[0.06] text-text-muted text-xs px-3 py-1.5 rounded-full">
-                {{ ind }}
-              </span>
-            </div>
-          </div>
-        </div>
+        <p class="mt-8 text-sm leading-7 text-text-muted">I am continuing to deepen these skills through practice, personal projects, and new opportunities.</p>
       </div>
     </div>
   </section>
 
-  <!-- Lifestyle -->
-  <section class="py-16 md:py-20 px-6">
-    <div class="max-w-5xl mx-auto fade-up fade-up-delay-2">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        <div>
-          <app-section-header [label]="content.lifestyle.label" [heading]="content.lifestyle.heading"></app-section-header>
-          <p class="text-text-secondary leading-7 mb-6">{{ content.lifestyle.body }}</p>
-          <a routerLink="/lifestyle" class="w-fit rounded border border-accent py-2 px-4 text-white text-sm font-medium flex items-center justify-center gap-2">
-            See My Lifestyle
-            <i class="uil uil-arrow-right"></i>
-          </a>
-        </div>
-        <div class="grid grid-cols-2 gap-3">
-          <div class="aspect-square rounded-xl overflow-hidden">
-            <img src="/assets/photo4.jpg" alt="Fitness" class="w-full h-full object-cover image-hover">
-          </div>
-          <div class="aspect-square rounded-xl overflow-hidden translate-y-6">
-            <img src="/assets/photo3.jpg" alt="Dubai" class="w-full h-full object-cover image-hover">
-          </div>
-          <div class="aspect-square rounded-xl overflow-hidden">
-            <img src="/assets/photo2.jpg" alt="Reflection" class="w-full h-full object-cover image-hover">
-          </div>
-          <div class="aspect-square rounded-xl overflow-hidden translate-y-6">
-            <img src="/assets/photo5.jpg" alt="Style" class="w-full h-full object-cover image-hover">
-          </div>
-        </div>
+  <section class="page-section">
+    <div class="shell grid grid-cols-1 items-center gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+      <div>
+        <h2 class="font-display text-3xl font-semibold tracking-[-0.03em] text-text-primary sm:text-4xl">{{ content.lifestyle.heading }}</h2>
+        <p class="mt-5 text-base leading-8 text-text-secondary">{{ content.lifestyle.body }}</p>
+        <a routerLink="/lifestyle" class="btn-ghost mt-8">See outside work <i class="uil uil-arrow-right"></i></a>
+      </div>
+      <div class="overflow-hidden rounded-2xl border border-border-subtle bg-surface">
+        <img src="/assets/ebenezer-travel.jpg" alt="Ebenezer outside work" class="aspect-[16/10] w-full object-cover object-[center_38%]" loading="lazy">
       </div>
     </div>
   </section>
 
-  <app-cta-section
-    heading="Want to work together?"
-    body="I take on a small number of select projects each quarter. If you have something meaningful to build, I'd love to hear about it."
-    button="Start a Conversation"
-    link="/contact">
-  </app-cta-section>
-
+  <app-cta-section></app-cta-section>
 </div>

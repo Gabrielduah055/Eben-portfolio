@@ -1,40 +1,36 @@
 import { Routes } from '@angular/router';
+import { META } from './data/content.constants';
 
 export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent),
-    title: 'Daniel Mensah | Digital Marketer in UAE',
+    title: META.home.title,
   },
   {
     path: 'about',
     loadComponent: () => import('./pages/about/about.component').then(m => m.AboutComponent),
-    title: 'About | Daniel Mensah',
+    title: META.about.title,
   },
   {
     path: 'work',
     loadComponent: () => import('./pages/work/work.component').then(m => m.WorkComponent),
-    title: 'Work | Daniel Mensah',
-  },
-  {
-    path: 'work/:slug',
-    loadComponent: () => import('./pages/project-detail/project-detail.component').then(m => m.ProjectDetailComponent),
-    title: 'Case Study | Daniel Mensah',
+    title: META.work.title,
   },
   {
     path: 'services',
     loadComponent: () => import('./pages/services/services.component').then(m => m.ServicesComponent),
-    title: 'Services | Daniel Mensah',
+    title: META.services.title,
   },
   {
     path: 'lifestyle',
     loadComponent: () => import('./pages/lifestyle/lifestyle.component').then(m => m.LifestyleComponent),
-    title: 'Lifestyle | Daniel Mensah',
+    title: META.lifestyle.title,
   },
   {
     path: 'contact',
     loadComponent: () => import('./pages/contact/contact.component').then(m => m.ContactComponent),
-    title: 'Contact | Daniel Mensah',
+    title: META.contact.title,
   },
   {
     path: '**',

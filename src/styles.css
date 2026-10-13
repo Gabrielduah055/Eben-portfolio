@@ -4,208 +4,126 @@
 
 @layer base {
   :root {
-    --bg-primary:    #0D0F1A;
-    --bg-secondary:  #121522;
-    --surface:       #171A28;
-    --surface-el:    #1D2030;
-    --text-primary:  #F5F4F1;
-    --text-secondary:#A7A7B2;
-    --text-muted:    #737684;
-    --accent:        #8B7CF6;
-    --accent-light:  #A896FF;
-    --border:        rgba(255,255,255,0.08);
+    color-scheme: dark;
+    --bg-primary: 12 16 27;
+    --bg-secondary: 17 23 38;
+    --surface: 23 31 50;
+    --surface-el: 30 40 64;
+    --text-primary: 242 245 250;
+    --text-secondary: 177 187 204;
+    --text-muted: 130 143 164;
+    --accent: 66 99 235;
+    --accent-light: 92 124 250;
+    --border: 62 75 98;
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
-    @apply bg-bg-primary text-text-primary font-sans antialiased;
-    background-color: var(--bg-primary);
+    @apply m-0 bg-bg-primary text-text-primary font-sans antialiased;
+    min-width: 320px;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 82% 8%, rgb(var(--accent) / 0.09), transparent 28rem),
+      linear-gradient(rgb(var(--border) / 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--border) / 0.12) 1px, transparent 1px);
+    background-size: auto, 72px 72px, 72px 72px;
+    background-position: 0 0, -1px -1px, -1px -1px;
   }
 
-  * {
-    @apply border-border-subtle;
+  a, button { -webkit-tap-highlight-color: transparent; }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 3px solid rgb(var(--accent) / 0.45);
+    outline-offset: 3px;
   }
 
   ::selection {
-    background-color: var(--accent);
-    color: #fff;
+    background: rgb(var(--accent) / 0.9);
+    color: rgb(248 249 253);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --bg-primary: 246 248 252;
+    --bg-secondary: 237 241 248;
+    --surface: 250 251 253;
+    --surface-el: 229 235 245;
+    --text-primary: 18 26 42;
+    --text-secondary: 67 79 100;
+    --text-muted: 91 105 128;
+    --accent: 52 82 211;
+    --accent-light: 66 99 235;
+    --border: 197 207 223;
   }
 }
 
 @layer components {
-  /* Section label style */
-  .label {
-    @apply text-accent text-xs font-medium uppercase tracking-widest;
-  }
+  .shell { @apply mx-auto w-full max-w-6xl px-5 sm:px-7 lg:px-8; }
+  .page-section { @apply py-20 md:py-28; }
 
-  /* Subtle divider */
-  .divider {
-    @apply border-t border-white/[0.08] w-full;
-  }
+  .label { @apply text-accent text-[0.7rem] font-bold uppercase tracking-[0.18em]; }
 
-  /* Card base */
-  .card {
-    @apply bg-surface border border-white/[0.08] rounded-xl overflow-hidden transition-all duration-300;
-  }
-
-  /* Primary button */
   .btn-primary {
-    @apply inline-flex items-center gap-2 bg-accent hover:bg-accent-light text-white font-medium px-6 py-3 rounded-full transition-all duration-300 text-sm;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-accent px-6 py-3 text-sm font-semibold text-[#f8f9fd] transition duration-300 hover:-translate-y-0.5 hover:bg-accent-light active:translate-y-px;
   }
 
-  /* Ghost button */
   .btn-ghost {
-    @apply inline-flex items-center gap-2 border border-white/20 hover:border-accent text-text-primary hover:text-accent font-medium px-6 py-3 rounded-full transition-all duration-300 text-sm;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-border-subtle bg-surface/70 px-6 py-3 text-sm font-semibold text-text-primary transition duration-300 hover:-translate-y-0.5 hover:border-accent hover:text-accent active:translate-y-px;
   }
 
-  .service-icon {
-    @apply inline-flex h-11 w-11 items-center justify-center rounded-xl border border-accent/25 bg-accent/10 text-accent-light;
-  }
-
-  .service-icon i {
-    @apply text-2xl leading-none;
-  }
-
-  .footer-social-link {
-    @apply inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-text-muted transition-all duration-200 hover:border-accent hover:text-accent;
-  }
-
-  .footer-social-link i {
-    @apply text-lg leading-none;
-  }
-
-  .footer-contact-row {
-    @apply flex items-center gap-3 text-text-muted text-sm transition-colors duration-200;
-  }
-
-  .footer-contact-row i {
-    @apply text-accent text-lg leading-none;
-  }
-
-  .contact-label {
-    @apply block text-text-secondary text-sm font-medium mb-2;
-  }
-
-  .contact-field {
-    @apply w-full bg-transparent border text-text-primary text-sm rounded-xl px-4 py-3 outline-none transition-all duration-200 focus:border-accent/50 placeholder-text-muted;
-  }
-
-  .contact-card {
-    @apply flex items-center gap-4 p-4 border border-white/[0.08] rounded-xl transition-all duration-200 hover:border-accent/30;
-  }
-
-  .smooth-card {
-    @apply transition-all duration-300 ease-out;
-  }
-
-  .image-hover {
-    @apply transition-transform duration-700 ease-out;
-  }
-
-  .group:hover .image-hover,
-  .image-hover:hover {
-    transform: scale(1.045);
-  }
-
-  /* Nav link */
-  .nav-link {
-    @apply text-text-secondary hover:text-text-primary text-sm font-medium transition-colors duration-200 relative;
-  }
-
-  .nav-link.active {
-    @apply text-text-primary;
-  }
-
+  .nav-link { @apply relative text-sm font-medium text-text-secondary transition-colors duration-200 hover:text-text-primary; }
+  .nav-link.active { @apply text-text-primary; }
   .nav-link.active::after {
     content: '';
-    @apply absolute -bottom-1 left-0 right-0 h-px bg-accent;
+    @apply absolute -bottom-2 left-0 h-0.5 w-full rounded-full bg-accent;
   }
 
-  /* Section spacing */
-  .section {
-    @apply py-20 md:py-28 px-6 max-w-5xl mx-auto;
+  .panel { @apply rounded-2xl border border-border-subtle bg-surface/80; }
+
+  .icon-button {
+    @apply inline-flex h-11 w-11 items-center justify-center rounded-full border border-border-subtle bg-surface/70 text-text-secondary transition duration-300 hover:-translate-y-0.5 hover:border-accent hover:text-accent active:translate-y-px;
   }
 
-  /* Fade up animation */
+  .service-icon { @apply inline-flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10 text-accent; }
+
+  .contact-card {
+    @apply flex items-center gap-4 rounded-2xl border border-border-subtle bg-surface/70 p-5 transition duration-300 hover:-translate-y-0.5 hover:border-accent;
+  }
+
   .fade-up {
-    @apply opacity-0;
-    animation: fadeInUp 0.72s cubic-bezier(0.2, 0.65, 0.25, 1) forwards;
+    opacity: 0;
+    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
+  .fade-up-delay-1 { animation-delay: 100ms; }
+  .fade-up-delay-2 { animation-delay: 180ms; }
+  .fade-up-delay-3 { animation-delay: 260ms; }
 
-  .fade-up-delay-1 {
-    animation-delay: 90ms;
-  }
-
-  .fade-up-delay-2 {
-    animation-delay: 170ms;
-  }
-
-  .fade-up-delay-3 {
-    animation-delay: 250ms;
-  }
-}
-
-@layer utilities {
-  .text-gradient {
-    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .accent-gradient {
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-  }
-
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+  .image-hover { @apply transition-transform duration-700 ease-out; }
+  .group:hover .image-hover,
+  .image-hover:hover { transform: scale(1.035); }
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .smooth-card:hover {
-    transform: translateY(-4px);
-  }
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
-
-  .fade-up {
-    opacity: 1;
-    transform: none;
-    animation: none;
-  }
-
-  .smooth-card,
-  .image-hover {
-    transition: none;
-  }
-
-  .smooth-card:hover,
+  .fade-up { opacity: 1; transform: none; }
   .group:hover .image-hover,
-  .image-hover:hover {
-    transform: none;
-  }
+  .image-hover:hover { transform: none; }
 }

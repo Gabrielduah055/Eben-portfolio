@@ -1,34 +1,30 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{html,ts}",
-  ],
+  content: ['./src/**/*.{html,ts}'],
   theme: {
     extend: {
       colors: {
-        'bg-primary':   '#0D0F1A',
-        'bg-secondary': '#121522',
-        'surface':      '#171A28',
-        'surface-el':   '#1D2030',
-        'text-primary': '#F5F4F1',
-        'text-secondary':'#A7A7B2',
-        'text-muted':   '#737684',
-        'accent':       '#8B7CF6',
-        'accent-light': '#A896FF',
-        'border-subtle':'rgba(255,255,255,0.08)',
+        'bg-primary': 'rgb(var(--bg-primary) / <alpha-value>)',
+        'bg-secondary': 'rgb(var(--bg-secondary) / <alpha-value>)',
+        'surface': 'rgb(var(--surface) / <alpha-value>)',
+        'surface-el': 'rgb(var(--surface-el) / <alpha-value>)',
+        'text-primary': 'rgb(var(--text-primary) / <alpha-value>)',
+        'text-secondary': 'rgb(var(--text-secondary) / <alpha-value>)',
+        'text-muted': 'rgb(var(--text-muted) / <alpha-value>)',
+        'accent': 'rgb(var(--accent) / <alpha-value>)',
+        'accent-light': 'rgb(var(--accent-light) / <alpha-value>)',
+        'border-subtle': 'rgb(var(--border) / <alpha-value>)',
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-      },
-      letterSpacing: {
-        widest: '0.2em',
+        sans: ['Aptos', 'Segoe UI Variable', 'Segoe UI', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['Aptos Display', 'Segoe UI Variable Display', 'Segoe UI', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       animation: {
-        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+        'fade-in-up': 'fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards',
       },
       keyframes: {
         fadeInUp: {
-          '0%':   { opacity: '0', transform: 'translateY(20px)' },
+          '0%': { opacity: '0', transform: 'translateY(22px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
       },

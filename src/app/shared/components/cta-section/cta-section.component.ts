@@ -7,18 +7,16 @@ import { CTA_DEFAULT } from '../../../data/content.constants';
   standalone: true,
   imports: [RouterLink],
   template: `
-    <section class="py-20 px-6">
-      <div class="max-w-4xl mx-auto text-center">
-        <div class="bg-surface border border-white/[0.08] rounded-2xl p-12 md:p-16 relative overflow-hidden">
-          <!-- Decorative blur -->
-          <div class="absolute -top-20 -right-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl pointer-events-none"></div>
-          <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
-          <!-- Content -->
-          <div class="relative z-10">
-            <h2 class="text-2xl md:text-3xl font-medium text-text-primary mb-4 leading-tight">{{ heading }}</h2>
-            <p class="text-text-secondary text-base leading-7 mb-8 max-w-xl mx-auto">{{ body }}</p>
-            <a [routerLink]="link" class="btn-primary text-base px-8 py-3.5">{{ button }}</a>
+    <section class="page-section">
+      <div class="shell">
+        <div class="grid grid-cols-1 gap-8 rounded-2xl bg-accent p-8 text-[#f8f9fd] md:p-12 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div>
+            <h2 class="max-w-2xl font-display text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">{{ heading }}</h2>
+            <p class="mt-4 max-w-xl text-sm leading-7 text-[#e8edff]">{{ body }}</p>
           </div>
+          <a [routerLink]="link" class="inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#f8f9fd] px-6 py-3 text-sm font-bold text-[#1b2f88] transition duration-300 hover:-translate-y-0.5 active:translate-y-px">
+            {{ button }} <i class="uil uil-arrow-up-right"></i>
+          </a>
         </div>
       </div>
     </section>

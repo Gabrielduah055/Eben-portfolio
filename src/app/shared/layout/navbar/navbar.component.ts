@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink, Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
@@ -15,13 +15,7 @@ export class NavbarComponent implements OnInit {
 
   site = SITE;
   links = NAV.links;
-  isScrolled = false;
   mobileOpen = false;
-
-  @HostListener('window:scroll')
-  onScroll() {
-    this.isScrolled = window.scrollY > 20;
-  }
 
   ngOnInit() {
     this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(() => {
